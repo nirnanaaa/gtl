@@ -1,0 +1,9 @@
+#include "<%=gem_name%>.h"
+
+VALUE rb_m<%=mod_name%>;
+
+void Init_<%=gem_name%>(void)
+{
+  rb_m<%=mod_name%> = rb_define_module("<%=mod_name%>");
+
+}

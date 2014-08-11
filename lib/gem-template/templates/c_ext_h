@@ -1,0 +1,10 @@
+#ifndef _H_<%=mod_name%>
+#define _H_<%=mod_name%>
+
+#include "ruby.h"
+#include "ruby/encoding.h"
+
+
+void Init_<%=gem_name%>(void);
+
+#endif

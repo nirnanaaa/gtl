@@ -1,0 +1,22 @@
+require 'rake/clean'
+require 'rake/extensiontask'
+# Gem Spec
+spec = Gem::Specification.load('<%=gem_name%>.gemspec')
+
+Gem::PackageTask.new(spec) do |pkg|
+end
+
+# feed the ExtensionTask with your spec
+Rake::ExtensionTask.new('<%=gem_name%>', spec)
+#
+#end
+# Packaging
+require 'bundler/gem_tasks'
+
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new do |task|
+  task.rspec_opts = ['--color', '--format', 'documentation']
+end
+task :spec => 'compile'
+
+task :default => [ :spec, "native", :gem]

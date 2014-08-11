@@ -1,0 +1,38 @@
+require 'mkmf'
+
+
+$CFLAGS << " #{ENV["CFLAGS"]}"
+$CFLAGS << " -g"
+$CFLAGS << " -O3" unless $CFLAGS[/-O\d/]
+$CFLAGS << " -Wall -Wno-comment"
+
+def sys(cmd)
+  puts " -- #{cmd}"
+  unless ret = xsystem(cmd)
+    raise "ERROR: '#{cmd}' failed"
+  end
+  ret
+end
+
+if !(MAKE = find_executable('gmake') || find_executable('make'))
+  abort "ERROR: GNU make is required."
+end
+
+CWD = File.expand_path(File.dirname(__FILE__))
+
+
+#Dir.chdir(LIBICAL_DIR) do
+#  Dir.mkdir("build") if !Dir.exists?("build")
+#  Dir.chdir("build") do
+#    sys("cmake ..")
+#    sys(MAKE)
+#    pcfile = File.join(LIBICAL_DIR,"build","libical.pc")
+#    $LDFLAGS << " " + `pkg-config --libs --static #{pcfile}`.strip
+#  end
+
+#end
+#$DEFLIBPATH.unshift("#{LIBICAL_DIR}/build/lib")
+#dir_config("libical", "#{LIBICAL_DIR}/src/libical", "#{LIBICAL_DIR}/build/lib")
+dir_config("<%=gem_name%>")
+
+create_makefile('<%=gem_name%>/<%=gem_name%>')

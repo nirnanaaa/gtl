@@ -1,0 +1,32 @@
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "<%=gem_name%>/version"
+
+Gem::Specification.new do |s|
+  s.name              = "<%=gem_name%>"
+  s.version           = <%=mod_name%>::VERSION
+  s.authors           = ["<%=git_user%>"]
+  s.email             = ["<%=git_mail%>"]
+  s.homepage          = "https://github.com/<%=git_user%>/<%=gem_name%>"
+  s.summary           = %q{}
+  s.description       = %q{}
+
+  s.rubyforge_project = s.name
+  s.license           = "GPLv3"
+
+  s.files             = `git ls-files`.split("\n")
+  s.extensions        = ['ext/<%=gem_name%>/extconf.rb']
+  s.test_files        = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables       = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths     = ["lib"]
+
+
+  s.add_development_dependency "rake-compiler", "~> 0.8"
+  s.add_development_dependency "rspec", "~> 3.0"
+  s.add_development_dependency "rake", "~> 10.1"
+  <%if additional_gems && additional_gems.is_a?(Array) %>
+      <% additional_gems.each do |gem| %>
+  s.add_dependency "<%=gem%>"
+      <% end%>
+  <%end%>
+end
