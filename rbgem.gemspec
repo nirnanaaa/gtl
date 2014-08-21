@@ -3,13 +3,13 @@ $:.push File.expand_path("../lib", __FILE__)
 require "gem-template/version"
 
 Gem::Specification.new do |s|
-  s.name              = "gem-template"
+  s.name              = "gtl"
   s.version           = GemTemplate::VERSION
   s.authors           = ["nirnanaaa"]
   s.email             = ["mosny@zyg.li"]
   s.homepage          = "https://github.com/nirnanaaa/gem-template"
-  s.summary           = %q{}
-  s.description       = %q{}
+  s.summary           = %q{Gem Template for Ruby}
+  s.description       = %q{Template for a rubygem}
 
   s.rubyforge_project = s.name
   s.license           = "GPLv3"
